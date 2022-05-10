@@ -28,7 +28,7 @@ async fn network(package: String, mode: String)
 {
     if mode == "content"
     {
-        let mut url: String = "http://127.0.0.1:8338/content/".to_string();
+        let mut url: String = "https://jpm-web.herokuapp.com/content/".to_string();
         url.push_str(&package);
 
         let response = reqwest::get(url)
@@ -41,7 +41,7 @@ async fn network(package: String, mode: String)
     }
     else if mode == "check"
     {
-        let mut url: String = "http://127.0.0.1:8338/check/".to_string();
+        let mut url: String = "https://jpm-web.herokuapp.com/check/".to_string();
         url.push_str(&package);
 
         let response = reqwest::get(url)
