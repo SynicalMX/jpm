@@ -15,23 +15,30 @@ enum Mode {
    Remove,
 }
 
+enum Network {
+    Check,
+    Content,
+}
+
 fn main() {
     let args = Args::parse();
 
-    println!("{:?}", args.mode);
-    println!("{}", args.package);
-
-    network();
+    println!("Attempting to install '{}'", args.package);
+    network(args.package);
 }
 
 #[tokio::main]
-async fn network() {
-    let response = reqwest::get("http://10.201.102.67:8338")
-        .await
-        // each response is wrapped in a `Result` type
-        // we'll unwrap here for simplicity
-        .unwrap()
-        .text()
-        .await;
-    println!("{}", response.unwrap());
+async fn network(package: String, mode: String) -> std::string::String {
+    if (mode == "content") {
+        let mut url: String = "http://192.168.197.81:8338/content/".to_string();
+        url.push_str(&package);
+
+        let response = reqwest::get(url)
+            .await
+            .unwrap()
+            .text()
+            .await;
+
+        return response.unwrap();
+    }
 }
