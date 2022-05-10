@@ -36,7 +36,8 @@ async fn network(package: String, mode: String)
             .unwrap()
             .text()
             .await;
-
+        
+        println!("{:?}", response.unwrap());
     }
     else if mode == "check"
     {
